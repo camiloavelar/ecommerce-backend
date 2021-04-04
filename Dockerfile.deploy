@@ -1,0 +1,12 @@
+FROM node:14.16-alpine as node
+ENV PATH="/application/node_modules/.bin:${PATH}"
+
+WORKDIR /application
+COPY ./package.json ./package-lock.json ./
+RUN npm install
+COPY . ./
+
+ARG DOCKER_ENV
+ENV NODE_ENV=${DOCKER_ENV}
+
+CMD node server

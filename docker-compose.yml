@@ -1,0 +1,28 @@
+version: '3.7'
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: '100k'
+    max-file: '1'
+
+networks:
+  shared-services:
+    external: true
+
+services:
+  proshop-backend:
+    restart: always
+    user: '${UID}:${GID}'
+    build:
+      context: .
+      target: dev
+    environment:
+      - WATCH_FILES=${WATCH_FILES}
+    volumes:
+      - '.:/application'
+    ports:
+      - '${HTTP_PORT}:${HTTP_PORT}'
+    logging: *default-logging
+    networks:
+      - shared-services
