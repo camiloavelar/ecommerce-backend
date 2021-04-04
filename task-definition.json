@@ -1,0 +1,75 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:sa-east-1:217411580783:task-definition/shop-web-family:2",
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "217411580783.dkr.ecr.sa-east-1.amazonaws.com/proshop-frontend",
+            "cpu": 5,
+            "memory": 256,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/shop-frontend-container",
+                    "awslogs-region": "sa-east-1"
+                }
+            }
+        },
+        {
+            "name": "backend",
+            "image": "217411580783.dkr.ecr.sa-east-1.amazonaws.com/proshop-backend",
+            "cpu": 5,
+            "memory": 256,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 5000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/shop-backend-container",
+                    "awslogs-region": "sa-east-1"
+                }
+            }
+        }
+    ],
+    "family": "shop-web-family",
+    "networkMode": "bridge",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "registeredAt": "2021-03-31T21:37:41.239000-03:00",
+    "registeredBy": "arn:aws:iam::217411580783:user/camilo.avelar"
+}
