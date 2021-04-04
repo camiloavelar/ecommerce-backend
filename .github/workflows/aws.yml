@@ -75,5 +75,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: shop-service
-          cluster: default
+          cluster: shop
           wait-for-service-stability: true
